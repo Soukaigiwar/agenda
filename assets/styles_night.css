@@ -1,0 +1,410 @@
+:root{
+    --main-background-color: #2b2a29;
+    --background-gradient: linear-gradient(45deg, #000000 0%, rgb(92, 92, 92) 78%, rgb(0, 0, 0) 100%);
+    --main-text: #f0f0f0;
+    --logo: #e66d03;
+    --form-background: #77b9b9;
+    --form-input-background: #27393f;
+    --form-input-placeholder: #b3b3b3;
+    --form-submit: #F4D35E;
+    --form-submit-hover: #fdbc08;
+    --table-background: #3d3d3d;
+    --submit-danger: #d31b1b;
+    --submit-blue: #1a93ca;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    min-width: 860px;
+    min-height: 100vh;
+    background: var(--background-gradient);
+    background-repeat: no-repeat;
+    font-family: 'Inter', sans-serif;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 140px;
+    transition: all 750ms ease;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    font-family: 'Syne', sans-serif;
+    align-items: center;
+    margin-left: 35px;
+    width: 180px;
+    height: 70px;
+    border-radius: 15px;
+    color: var(--logo);
+    font-size: 40px;
+    cursor: default;
+    transition: all 1000ms;
+}
+
+.menu {
+    width: 250px;
+    margin: 0 5px;
+    padding: 20px 0;
+    transition: all 1000ms;
+}
+
+.menu a {
+    font-size: 14px;
+    padding: 20px;
+    text-decoration: none;
+    color: var(--main-text);
+    transition: all 1000ms;
+}
+
+.menu a:hover {
+    text-decoration: underline;
+    transition: all 1000ms;
+}
+
+.menu i {
+    font-size: 20px;
+    margin-right: 6px;
+    color: var(--main-text);
+    transition: all 1000ms;
+}
+
+.tools {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    transition: all 1000ms;
+}
+
+.formulario,
+.formulario_pesquisar {
+    padding: 15px;
+    font-size: 12px;
+    font-weight: 600;
+    width: 700px;
+    text-align: center;
+    margin: 0px auto;
+    border-radius: 10px 10px 0 0;
+    color: var(--main-text);
+    background-color: var(--form-background);
+}
+
+.formulario_pesquisar {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: unset;
+    padding: 0 15px;
+    border-radius: 0;
+    background-color: transparent;
+}
+
+.formulario_pesquisar span {
+    font-size: 14px;
+}
+
+.formulario_pesquisar input[type="text"],
+.formulario_pesquisar input[type="tel"] {
+    width: 130px;
+    height: 25px;
+    padding: 0 15px;
+    margin-left: 15px;
+    color: var(--form-input-placeholder);
+    background-color: var(--main-background-color);
+    border: none;
+    border-radius: 8px;
+}
+
+.formulario_editar {
+    padding: 15px;
+    font-size: 12px;
+    font-weight: 600;
+    width: 700px;
+    text-align: center;
+    margin: 0px auto;
+    border-radius: 10px;
+    color: var(--main-text);
+    background-color: var(--form-background);
+}
+
+.formulario_editar input[type="text"],
+.formulario_editar input[type="tel"] {
+    margin: 20px 10px 20px; 
+    width: 250px;
+    height: 40px;
+    border: none;
+    border-radius: 8px;
+    color: var(--main-text);
+    background-color: var(--main-background-color);
+    padding-left: 8px;
+    font-size: 16px;
+}
+
+.formulario_editar input[type="text"]::placeholder,
+.formulario_editar input[type="tel"]::placeholder {
+    color: var(--form-input-placeholder);
+}
+
+
+.formulario_editar .submit,
+.formulario_pesquisar .submit {
+    margin: 20px 10px 5px 20px;
+    width: 100px;
+    height: 40px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--form-submit);
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 1000ms ease-in-out;
+}
+
+.formulario_pesquisar .submit {
+    margin: 10px;
+    background-color: var(--main-text);
+    color: var(--main-background-color);
+    font-size: 12px;
+    width: 35px;
+    height: 25px;
+    border-radius: 8px;
+}
+
+.formulario_editar .submit:hover,
+.formulario_pesquisar .submit:hover {
+    transform: scale(1.1);
+    background-color: var(--form-submit-hover);
+    font-weight: 600;
+    font-size: 16px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px, rgba(0, 0, 0, 0.2) 0px 5px 10px;
+    transition: all 500ms ease-in-out;
+    cursor: pointer;
+}
+
+.formulario_pesquisar .submit:hover {
+    background-color: var(--submit-blue);
+}
+
+.formulario_erro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: 600;
+    width: 700px;
+    height: 85px;
+    margin: 0px auto;
+    border-radius: 10px 10px 0 0;
+    color: var(--main-background-color);
+    background-color: var(--submit-danger);
+}
+
+.formulario_erro .msg_erro {
+    margin: 20px;
+    width: 300px;
+    height: 25px;
+    color: var(--main-text);
+}
+
+.formulario_erro .submit_btn {
+    margin: 20px 0 20px;
+    width: 100px;
+    height: 40px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--form-submit);
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 1000ms ease-in-out;
+}
+
+
+.formulario input[type="text"],
+.formulario input[type="tel"] {
+    margin: 20px 10px 20px; 
+    width: 250px;
+    height: 40px;
+    border: none;
+    border-radius: 8px;
+    color: var(--main-text);
+    background-color: var(--main-background-color);
+    padding-left: 8px;
+    font-size: 16px;
+}
+
+.formulario input[type="text"]::placeholder {
+    color: var(--form-input-placeholder);
+}
+
+.formulario input[type="tel"] {
+    margin: 20px 10px 5px 20px;
+    width: 150px;
+}
+
+.formulario input[type="tel"]::placeholder {
+    color: var(--form-input-placeholder);
+}
+
+.formulario .submit {
+    margin: 20px 10px 5px 20px;
+    width: 100px;
+    height: 40px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--form-submit);
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 1000ms ease-in-out;
+}
+
+.formulario .submit:hover {
+    transform: scale(1.1);
+    background-color: var(--form-submit-hover);
+    font-weight: 600;
+    font-size: 16px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px, rgba(0, 0, 0, 0.2) 0px 5px 10px;
+    transition: all 500ms ease-in-out;
+    cursor: pointer;
+}
+
+table {
+    padding: 20px;
+    margin: 0 auto;
+    width: 730px;
+    background-color: var(--table-background);
+    border-radius: 0;
+}
+
+table th:first-child {
+    font-size: 22px;
+    color: var(--main-text);
+    width: 45%;
+    text-align: start;
+}
+
+table th {
+    font-size: 22px;
+    padding: 18px 18px;
+    color: var(--main-text);
+    width: 35%;
+    text-align: start;
+}
+
+table th:last-child {
+    width: 20%;
+}
+
+table td {
+    padding: 8px 18px;
+    font-size: 18px;
+    color: var(--main-text);
+}
+
+.actions {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.remove, .editar {
+    width: 35px;
+    height: 35px;
+    color: transparent;
+    background: var(--main-background-color);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 250ms ease-in-out;
+}
+
+.remove:hover, .editar:hover {
+    transform: scale(1.2);
+    transition: all 250ms ease-in-out;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px, rgba(0, 0, 0, 0.2) 0px 5px 10px;
+}
+
+.remove span {
+    font-size: 22px;
+    color: var(--submit-danger);
+}
+
+.editar span {
+    font-size: 22px;
+    color: var(--submit-blue);
+}
+
+.total {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 20px;
+    margin: 0 auto 50px;
+    width: 690px;
+    color: var(--main-text);
+    background-color: var(--form-input-background);
+    border-radius: 0 0 20px 20px;
+}
+
+.total a {
+    text-decoration: none;
+    color: var(--main-text);
+}
+
+.tag {
+    position: absolute;
+    right: -48px;
+    top: calc(100vh / 3);
+    width: 140px;
+    height: 40px;
+    padding: 0 0 3px;
+    transform: rotate(-90deg);
+    box-shadow: 0px -5px 20px 0px rgba(0, 0, 0, 0.63);
+    cursor: pointer;
+    background-color: transparent;
+    background-image: url("./textile.png");
+    background-size: 196px 65px;
+    filter: brightness(1.8);
+    border-radius: 3px 3px 0 0;
+}
+
+.inner_tag {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: #d1d1d1;
+    filter: brightness(0.7);
+    border-bottom: dashed 1px #FFFFFF;
+}
+
+@media screen and (max-width: 992px) {
+    .header {
+        flex-direction: column;
+    }
+    .tools {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      width: 700px;
+      transition: all 2s;
+
+    }
+    .formulario_pesquisar {
+        justify-content: center;
+        margin: 0 -15px;
+    }
+    .menu {
+        padding: 5px;
+    }
+    .span_pesquisar{
+        display: none;
+    }
+}
