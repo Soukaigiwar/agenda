@@ -1,38 +1,23 @@
 <?php
 
-use sql_connection\Database;
+use sql_connection\Contact;
 
 require_once('./class/Export.php');
-require_once('./class/Database.php');
-require_once('./env/constansts.php');
+require_once('class/Contact.php');
 
-$nome = !empty($_GET['nome']) ? $_GET['nome'] : '';
-$telefone = !empty($_GET['telefone']) ? $_GET['telefone'] : '';
+$search = !empty($_POST['text_search']) ? $_POST['text_search'] : '';
 
+$query = new Contact();
 
-
-$params = [
-    ':nome' => '%' . $nome . '%',
-    ':telefone' => '%' . $telefone . '%'
-];
-
-$db = new Database(MYSQL_CONFIG);
-$query = $db->execute_query(" 
-    SELECT * FROM telefones 
-    WHERE nome like :nome
-    AND telefone like :telefone
-    ORDER BY nome", $params);
-
-$content = [];
-
-foreach ($query->results as $data){
-    $content[] = [$data->nome, $data->telefone];
-}
+$result = $query->get_contacts($search);
+$contacts = $result->results;
 
 $export_to_csv = new Export();
+$filename = date("YmdHis") . 'contatos.csv';
 
-$file = $export_to_csv->export_to_csv($content);
+$export_to_csv->export_to_csv($contacts, $filename);
 
-setcookie('export_file', $file, time() + 10);
+setcookie('export_file', $filename, time() + 2);
+setcookie('search', $search, time() + 2);
 
 header('Location: index.php');

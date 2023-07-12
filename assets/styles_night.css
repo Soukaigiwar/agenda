@@ -37,7 +37,6 @@ body {
     justify-content: center;
     font-family: 'Syne', sans-serif;
     align-items: center;
-    margin-left: 35px;
     width: 180px;
     height: 70px;
     border-radius: 15px;
@@ -62,16 +61,17 @@ body {
     transition: all 1000ms;
 }
 
-.menu a:hover {
-    text-decoration: underline;
-    transition: all 1000ms;
-}
-
 .menu i {
     font-size: 20px;
     margin-right: 6px;
     color: var(--main-text);
     transition: all 1000ms;
+}
+
+.tools i {
+    font-size: 20px;
+    margin-right: 15px;
+    color: var(--main-text);
 }
 
 .tools {
@@ -96,7 +96,6 @@ body {
 
 .formulario_pesquisar {
     display: flex;
-    justify-content: end;
     align-items: center;
     width: unset;
     padding: 0 15px;
@@ -108,10 +107,9 @@ body {
     font-size: 14px;
 }
 
-.formulario_pesquisar input[type="text"],
-.formulario_pesquisar input[type="tel"] {
+.formulario_pesquisar input[type="text"] {
     width: 130px;
-    height: 25px;
+    height: 30px;
     padding: 0 15px;
     margin-left: 15px;
     color: var(--form-input-placeholder);
@@ -150,9 +148,7 @@ body {
     color: var(--form-input-placeholder);
 }
 
-
-.formulario_editar .submit,
-.formulario_pesquisar .submit {
+.formulario_editar .submit {
     margin: 20px 10px 5px 20px;
     width: 100px;
     height: 40px;
@@ -165,17 +161,16 @@ body {
 }
 
 .formulario_pesquisar .submit {
-    margin: 10px;
-    background-color: var(--main-text);
-    color: var(--main-background-color);
-    font-size: 12px;
-    width: 35px;
-    height: 25px;
-    border-radius: 8px;
+    display: inline-flex;
+    font-size: 20px;
+    color: var(--main-text);
+    border: none;
+    background: transparent;
+    cursor: pointer;
 }
 
-.formulario_editar .submit:hover,
-.formulario_pesquisar .submit:hover {
+/* .formulario_pesquisar .submit:hover */
+.formulario_editar .submit:hover {
     transform: scale(1.1);
     background-color: var(--form-submit-hover);
     font-weight: 600;
@@ -185,11 +180,8 @@ body {
     cursor: pointer;
 }
 
-.formulario_pesquisar .submit:hover {
-    background-color: var(--submit-blue);
-}
-
-.formulario_erro {
+.formulario_erro,
+.tabela_vazia {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -202,6 +194,12 @@ body {
     border-radius: 10px 10px 0 0;
     color: var(--main-background-color);
     background-color: var(--submit-danger);
+}
+
+.tabela_vazia {
+    border-radius: 0;
+    color: var(--main-text);
+    background-color: var(--table-background);
 }
 
 .formulario_erro .msg_erro {
@@ -305,6 +303,11 @@ table td {
     color: var(--main-text);
 }
 
+table td div {
+    display: flex;
+    align-items: center;
+}
+
 .actions {
     display: flex;
     justify-content: space-evenly;
@@ -354,6 +357,15 @@ table td {
     color: var(--main-text);
 }
 
+.export_csv button {
+    display: inline-flex;
+    font-size: 20px;
+    color: var(--main-text);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
 .tag {
     position: absolute;
     right: -48px;
@@ -361,27 +373,23 @@ table td {
     width: 140px;
     height: 40px;
     padding: 0 0 3px;
+    background-image: url('img/textile.png');
+    background-repeat: repeat-x;
+    background-size: contain;
     transform: rotate(-90deg);
     box-shadow: 0px -5px 20px 0px rgba(0, 0, 0, 0.63);
     cursor: pointer;
-    background-color: transparent;
-    background-image: url("./textile.png");
-    background-size: 196px 65px;
-    filter: brightness(1.8);
-    border-radius: 3px 3px 0 0;
 }
 
 .inner_tag {
+    border-bottom: dashed 2px #0c435c;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 6px;
     font-family: 'Syne', sans-serif;
     font-size: 12px;
-    font-weight: 700;
-    color: #d1d1d1;
-    filter: brightness(0.7);
-    border-bottom: dashed 1px #FFFFFF;
+    color: #FFFFFF;
 }
 
 @media screen and (max-width: 992px) {
@@ -395,7 +403,6 @@ table td {
       align-items: center;
       width: 700px;
       transition: all 2s;
-
     }
     .formulario_pesquisar {
         justify-content: center;

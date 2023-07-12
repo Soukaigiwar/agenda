@@ -7,3 +7,4 @@ define('MYSQL_CONFIG', [
     'username' => 'root',
     'password' => ''
 ]);
+

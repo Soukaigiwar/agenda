@@ -52,7 +52,7 @@ class Database {
         }
 
         $connection = null;
-        return $this->_result('sucess', '', $sql, $results, $db->rowCount(), null);
+        return $this->_result('success', '', $sql, $results, $db->rowCount(), null);
     }
 
     public function execute_non_query($sql, $params = null){
@@ -86,7 +86,7 @@ class Database {
         }
 
         $connection = null;
-        return $this->_result('sucess', '', $sql, null, $db->rowCount(), $last_inserted_id);
+        return $this->_result('success', '', $sql, null, $db->rowCount(), $last_inserted_id);
     }
 
     private function _result($status, $message, $sql, $results, $affected_rows, $last_inserted_id){
