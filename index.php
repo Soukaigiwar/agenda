@@ -8,7 +8,8 @@
 
 // OK - Day and Night Mode
 
-// use sql_connection\Database;
+// Adicionar controle de usuarios
+// Usar sessões para controlar usuarios
 
 $contatcs = null;
 $total_contacts = 0;
@@ -26,9 +27,9 @@ $search = null;
     <?php include_once('components/contact_add_form.php'); ?>
     <?php endif; ?>
     
+    
     <?php include_once('components/contact_list.php'); ?>
     <?php include_once('components/status_bar.php'); ?>
     <?php include_once('components/side_tag.php'); ?>
-</body>
-
-</html>
+    
+    <?php include_once('components/footer.php'); ?>

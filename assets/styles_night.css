@@ -3,7 +3,7 @@
     --background-gradient: linear-gradient(45deg, #000000 0%, rgb(92, 92, 92) 78%, rgb(0, 0, 0) 100%);
     --main-text: #f0f0f0;
     --logo: #e66d03;
-    --form-background: #77b9b9;
+    --form-background: #08110c;
     --form-input-background: #27393f;
     --form-input-placeholder: #b3b3b3;
     --form-submit: #F4D35E;
@@ -11,100 +11,256 @@
     --table-background: #3d3d3d;
     --submit-danger: #d31b1b;
     --submit-blue: #1a93ca;
+
+    --font-logo: 'Syne', sans-serif;
+    --font-regular: 'Inter', sans-serif;
 }
+
+/* *{border: solid 1px yellow;} */
 
 body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    min-width: 860px;
+}
+
+.page {
+    min-width: 500px;
     min-height: 100vh;
+    padding: 0 50px;
     background: var(--background-gradient);
-    background-repeat: no-repeat;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-regular);
 }
 
 .header {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
     height: 140px;
-    transition: all 750ms ease;
+    padding: 50px 10px 10px;
+    transition: all 1s ease;
+}
+
+.logo_group {
+    display: flex;
+    gap: 50px;
+    align-items: center;
 }
 
 .logo {
-    display: flex;
-    justify-content: center;
-    font-family: 'Syne', sans-serif;
-    align-items: center;
-    width: 180px;
-    height: 70px;
-    border-radius: 15px;
+    font-family: var(--font-logo);
+    font-size: 60px;
     color: var(--logo);
-    font-size: 40px;
     cursor: default;
-    transition: all 1000ms;
+    transition: all 1s;
 }
-
-.menu {
-    width: 250px;
-    margin: 0 5px;
-    padding: 20px 0;
-    transition: all 1000ms;
-}
-
 .menu a {
     font-size: 14px;
-    padding: 20px;
-    text-decoration: none;
     color: var(--main-text);
+    text-decoration: none;
     transition: all 1000ms;
 }
 
 .menu i {
+    margin-right: 8px;
     font-size: 20px;
-    margin-right: 6px;
     color: var(--main-text);
     transition: all 1000ms;
-}
-
-.tools i {
-    font-size: 20px;
-    margin-right: 15px;
-    color: var(--main-text);
 }
 
 .tools {
     display: flex;
-    justify-content: end;
     align-items: center;
+    gap: 32px;
+    font-size: 14px;
     transition: all 1000ms;
-}
-
-.formulario,
-.formulario_pesquisar {
-    padding: 15px;
-    font-size: 12px;
-    font-weight: 600;
-    width: 700px;
-    text-align: center;
-    margin: 0px auto;
-    border-radius: 10px 10px 0 0;
     color: var(--main-text);
-    background-color: var(--form-background);
 }
 
-.formulario_pesquisar {
+.tools i {
+    font-size: 20px;
+    color: var(--main-text);
+}
+
+/* Search area */
+
+.group_search {
+    border-bottom: 1px solid var(--main-text);
+}
+
+.group_search input{
+    width: 200px;
+    padding: 10px;
+    font-size: 20px;
+    color: var(--main-text);
+    border: none;
+    
+    background-color: transparent;
+}
+
+.group_search input::placeholder {
+    color: var(--main-text);
+    opacity: .6;
+}
+
+.group_search input:focus {
+    outline: none;
+}
+
+.group_search button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+/* end Search Area */
+
+/* Add User Area */
+
+.group_user_add,
+.group_contact_add {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 48px;
+    border-radius: 10px;
+    color: var(--main-text);
+    background-color: rgba(0,0,0,.2);
+}
+
+.group_user_add h2,
+.group_contact_add h2 {
+    padding-top: 32px;
+    font-weight: 400;
+    letter-spacing: 4px;
+}
+
+.group_user_add .group_input,
+.group_contact_add .group_input {
+    width: 350px;
+    border: none;
+    border-bottom: 1px solid var(--main-text);
+}
+
+.group_input span {
+    opacity: .7;
+}
+
+.group_input input,
+.group_contact_add input {
+    padding: 16px;
+    font-size: 16px;
+    color: var(--main-text);
+    background-color: transparent;
+    border: none;
+}
+
+.group_input input:focus {
+    outline: none;
+}
+
+.submit_group {
+    display: flex;
+    justify-content: flex-end;
+    padding: 16px 0 32px;
+}
+
+.submit_group input {
+    padding: 16px 24px;
+    border: none;
+    font-weight: 600;
+    font-size: 16px;
+    background-color: var(--form-input-placeholder);
+    color: var(--form-background);
+}
+
+.submit_group input:hover {
+    filter: brightness(1.1);
+    cursor: pointer;
+}
+
+/* end Add User Area */
+
+/* Add Contact Area */
+
+.group_contact_add form {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    padding-bottom: 50px;
+}
+
+.group_contact_add .submit_group {
+    padding: 0;
+}
+
+/* end Add Contact Area */
+
+
+
+
+
+
+/* Side Tag Area */
+.tag {
+    position: absolute;
+    right: -48px;
+    top: calc(100vh / 3);
+    width: 140px;
+    height: 40px;
+    padding: 0 0 3px;
+    background-image: url('img/textile.png');
+    background-repeat: repeat-x;
+    background-size: contain;
+    transform: rotate(-90deg);
+    box-shadow: 0px -5px 20px 0px rgba(0, 0, 0, 0.63);
+    cursor: pointer;
+}
+
+.inner_tag {
+    border-bottom: dashed 2px #0c435c;
     display: flex;
     align-items: center;
-    width: unset;
-    padding: 0 15px;
-    border-radius: 0;
+    justify-content: center;
+    gap: 6px;
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    color: #FFFFFF;
+}
+/* end Side Tag Area */
+/*
+form {
+    border-radius: 10px;
+    color: var(--main-text);
+    background-color: rgba(0,0,0,.2);
+    transition: all 1s;
+}
+
+form .input_group {
+    width: 200px;
+    
+}
+
+form .input_group input {
+    transition: all 1s;
+}
+
+form .input_group span {
+    display: none;
+}
+
+form .submit_group .submit {
+    background-color: #e66d03;
+    color: #000000;
+    font-weight: 800;
+}
+
+.formulario_pesquisar {
     background-color: transparent;
 }
 
 .formulario_pesquisar span {
     font-size: 14px;
+    color: var(--main-text);
 }
 
 .formulario_pesquisar input[type="text"] {
@@ -118,7 +274,21 @@ body {
     border-radius: 8px;
 }
 
-.formulario_editar {
+
+.formulario .formulario_pesquisar {
+    padding: 15px;
+    font-size: 12px;
+    font-weight: 600;
+    width: 700px;
+    text-align: center;
+    margin: 0px auto;
+    border-radius: 10px 10px 0 0;
+    color: var(--main-text);
+    background-color: var(--form-background);
+}  */
+
+
+/* .formulario_editar {
     padding: 15px;
     font-size: 12px;
     font-weight: 600;
@@ -169,17 +339,6 @@ body {
     cursor: pointer;
 }
 
-/* .formulario_pesquisar .submit:hover */
-.formulario_editar .submit:hover {
-    transform: scale(1.1);
-    background-color: var(--form-submit-hover);
-    font-weight: 600;
-    font-size: 16px;
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px, rgba(0, 0, 0, 0.2) 0px 5px 10px;
-    transition: all 500ms ease-in-out;
-    cursor: pointer;
-}
-
 .formulario_erro,
 .tabela_vazia {
     display: flex;
@@ -221,31 +380,23 @@ body {
     transition: all 1000ms ease-in-out;
 }
 
-
-.formulario input[type="text"],
-.formulario input[type="tel"] {
-    margin: 20px 10px 20px; 
+.formulario input {
+    display: flex;
+    flex-direction: column;
+    margin: 10px; 
     width: 250px;
     height: 40px;
     border: none;
     border-radius: 8px;
     color: var(--main-text);
     background-color: var(--main-background-color);
-    padding-left: 8px;
+    padding-left: 16px;
     font-size: 16px;
 }
 
-.formulario input[type="text"]::placeholder {
+.formulario input::placeholder {
     color: var(--form-input-placeholder);
-}
-
-.formulario input[type="tel"] {
-    margin: 20px 10px 5px 20px;
-    width: 150px;
-}
-
-.formulario input[type="tel"]::placeholder {
-    color: var(--form-input-placeholder);
+    opacity: .4;
 }
 
 .formulario .submit {
@@ -254,23 +405,14 @@ body {
     height: 40px;
     border: none;
     border-radius: 8px;
-    background-color: var(--form-submit);
-    font-weight: 600;
+    background-color: var(--logo);
+    font-weight: 800;
     font-size: 16px;
-    transition: all 1000ms ease-in-out;
-}
-
-.formulario .submit:hover {
-    transform: scale(1.1);
-    background-color: var(--form-submit-hover);
-    font-weight: 600;
-    font-size: 16px;
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px, rgba(0, 0, 0, 0.2) 0px 5px 10px;
-    transition: all 500ms ease-in-out;
     cursor: pointer;
-}
+    transition: all 1000ms ease-in-out;
+} */
 
-table {
+/* table {
     padding: 20px;
     margin: 0 auto;
     width: 730px;
@@ -366,52 +508,88 @@ table td div {
     cursor: pointer;
 }
 
-.tag {
-    position: absolute;
-    right: -48px;
-    top: calc(100vh / 3);
-    width: 140px;
-    height: 40px;
-    padding: 0 0 3px;
-    background-image: url('img/textile.png');
-    background-repeat: repeat-x;
-    background-size: contain;
-    transform: rotate(-90deg);
-    box-shadow: 0px -5px 20px 0px rgba(0, 0, 0, 0.63);
-    cursor: pointer;
-}
+ */
 
-.inner_tag {
-    border-bottom: dashed 2px #0c435c;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    font-family: 'Syne', sans-serif;
-    font-size: 12px;
-    color: #FFFFFF;
-}
+@media screen and (max-width: 1080px) {
+    /* *{border: solid 1px #ff38f5;} */
 
-@media screen and (max-width: 992px) {
     .header {
+        display: flex;
         flex-direction: column;
+        justify-content: space-around;
+        min-width: 80%;
+        padding: 0 20px;
+        transition: all 1s ease;
     }
+
+    .page {
+        padding-top: 16px;
+    }
+    .logo_group {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        font-size: 40px;
+    }
+
+    .tools {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0 32px;
+        font-size: 14px;
+        color: var(--main-text);
+        transition: all 1000ms;
+    }
+    
+    .tools i {
+        font-size: 20px;
+        color: var(--main-text);
+    }
+
+    .group_contact_add form {
+        flex-direction: column;
+        gap: 0;
+        padding-bottom: 0;
+    }
+
+    .group_contact_add .submit_group {
+        padding: 16px 0 32px;
+    }
+} 
+
+/*
+
     .tools {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
-      width: 700px;
-      transition: all 2s;
+      margin-right: 20px;
+      margin-bottom: 30px;
+      transition: all 1s ease;
     }
-    .formulario_pesquisar {
-        justify-content: center;
-        margin: 0 -15px;
+
+    .formulario {
+        padding: 35px 0;
+        font-size: 12px;
+        font-weight: 600;
+        min-width: 420px;
+        margin: 0px auto 0px;
+        transition: all 1s ease;
     }
-    .menu {
-        padding: 5px;
+
+    .formulario .input_group input {
+        width: 300px;
+        transition: all 1s ease;
     }
-    .span_pesquisar{
-        display: none;
+
+    .formulario .input_group span {
+        display: unset;
+        padding-left: 30px;
     }
-}
+
+} */
