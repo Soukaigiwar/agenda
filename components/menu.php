@@ -1,3 +1,9 @@
+<?php session_start();?>
 <div class="menu">
-    <a href="index.php"><i class="fa-solid fa-address-book"></i>Listar Telefones</a>
+    <?php if (isset($_SESSION['user'])) : ?>
+        <a href="logout.php"><i class="fa-solid fa-user"></i>Olá <?= $_SESSION['user'] ?> | Sair</a>
+    <?php else :?>
+        <a href="signup.php"><i class="fa-solid fa-user-plus"></i>Criar conta</a>
+        <a href="login.php"> | Login</a>
+    <?php endif; ?>
 </div>

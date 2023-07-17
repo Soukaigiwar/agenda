@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 use sql_connection\User;
 
 if ($_SERVER['REQUEST_METHOD'] != 'POST') {
@@ -12,4 +14,13 @@ $password = $_POST['text_password'];
 
 $user = new User();
 
-$user->get_user($email, $password);
+$user_data = $user->get_user($email, $password);
+
+if (!$user_data) {
+    unset($_SESSION['user']);
+    header('Location: index.php');
+} else {
+    $_SESSION['user'] = $user_data['name'];
+}
+
+header('Location: index.php');
