@@ -10,9 +10,9 @@
 <?php else : ?>
     <div class="group_search">
     <form>
-        <input type="text" name="text_search" placeholder="Pesquisar:" style="cursor: not-allowed" disabled>
+        <input type="text" name="text_search" placeholder="Pesquisar:" style="cursor: not-allowed; opacity: .15;" disabled>
         <button type="submit" disabled>
-            <i class="fa-solid fa-magnifying-glass" style="cursor: not-allowed"></i>
+            <i class="fa-solid fa-magnifying-glass" style="cursor: not-allowed; opacity: .15;"></i>
         </button>
     </form>
 </div>

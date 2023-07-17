@@ -4,9 +4,11 @@ namespace sql_connection;
 
 use stdClass;
 use sql_connection\Database;
+use UserCrypt;
 
 require_once('env/constants.php');
-require_once('./Database.php');
+require_once('Database.php');
+require_once('UserCrypt.php');
 
 class User {
     private string $_user = '';
@@ -23,8 +25,11 @@ class User {
         if (!$user_exist) {
             return false;
         } else {
-            $this->_password = $user_exist[0]->password;
-            $eval_password = $this->check_password($password);
+            $user_crypt = new UserCrypt();
+
+            $hash = $user_exist[0]->password;
+
+            $eval_password = $user_crypt->check_password($password, $hash);
 
             if (!$eval_password){
                 return false;
@@ -47,11 +52,14 @@ class User {
         } else {
             $db = new Database(MYSQL_CONFIG);
 
+            $passwordCrypt = new UserCrypt();
+            $password = $passwordCrypt->setPassword($user_data['password']);
+
             $params = [
                 ':nome' => $user_data['name'],
                 ':apelido' => $user_data['last_name'],
                 ':email' => $user_data['email'],
-                ':password' => $user_data['password']
+                ':password' => $password
             ];
 
             $query = $db->execute_non_query("INSERT INTO `usuarios` " .
@@ -99,11 +107,6 @@ class User {
         }
 
         return false;
-    }
-
-    private function check_password(string $password){
-
-        return ($password == $this->_password);
     }
 
     private function _result($status, $message, $sql, $results, $affected_rows, $last_inserted_id){

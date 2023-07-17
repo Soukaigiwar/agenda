@@ -28,4 +28,3 @@ if (!$new_user) {
 }
 
 
-// header('Location: index.php');
