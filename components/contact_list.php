@@ -20,16 +20,16 @@ $query = new Contact();
 $result = $query->get_contacts($search);
 $contacts = $result->results;
 $total_contacts = $result->affected_rows;
+
 ?>
 
 <?php if ($total_contacts == 0) : ?>
-    <div class='tabela_vazia'>
-            não há registos na tabela
+    <div class='empty_data'>
+    <h2>não há telefones registados</h2>
     </div>
 <?php else : ?>
-    <div class='tabela'>
+    <div class='list'>
         <table>
-            
             <thead>
                 <tr>
                     <th>Nome</th>
@@ -40,10 +40,10 @@ $total_contacts = $result->affected_rows;
             
             <tbody>
             <?php foreach ($contacts as $contact) : ?>
-                <tr>
+                <tr class='list_item'>
                     <td><?=$contact->nome?></td>
                     <td>
-                        <div>
+                        <div class='phone_item'>
                             <?php if (str_contains($contact->telefone, +55)) : ?>
                                 <img width="24" height="24" src="./assets/img/brazil-48.png" alt="brazil-flag"/>
                                 <?=$contact->telefone?>
@@ -64,7 +64,7 @@ $total_contacts = $result->affected_rows;
                                 </button>
                             </form>
                             <form action='editar_telefone.php' method='post'>
-                                <button class='editar' type='submit' name='id' value='<?=$contact->id?>'>
+                                <button class='edit' type='submit' name='id' value='<?=$contact->id?>'>
                                     <span><i class='fa-solid fa-pen'></i></span>
                                 </button>
                             </form>

@@ -13,7 +13,7 @@ CREATE TABLE `telefones` (
     `deleted_at` DATETIME NULL DEFAULT NULL
 )
 
-CREATE TABLE `clientes` (
+CREATE TABLE `usuarios` (
     `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `nome` VARCHAR(50) NULL DEFAULT NULL,
     `apelido` VARCHAR (50) NULL DEFAULT NULL,
@@ -24,5 +24,5 @@ CREATE TABLE `clientes` (
     `deleted_at` DATETIME NULL DEFAULT NULL
 )
 
-INSERT INTO `clientes` (nome, apelido, email, password)
+INSERT INTO `usuarios` (nome, apelido, email, password)
   VALUES ('admin', '', 'admin@agenda', '1234');

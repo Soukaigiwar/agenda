@@ -1,35 +1,50 @@
-:root{
-    --main-background-color: #2b2a29;
+:root {
     --background-gradient: linear-gradient(45deg, #000000 0%, rgb(92, 92, 92) 78%, rgb(0, 0, 0) 100%);
     --main-text: #f0f0f0;
     --logo: #e66d03;
     --form-background: #08110c;
+    --scroll-background: #2e2e2e;
     --form-input-background: #27393f;
-    --form-input-placeholder: #b3b3b3;
+    --form-button: #b3b3b3;
     --form-submit: #F4D35E;
-    --form-submit-hover: #fdbc08;
     --table-background: #3d3d3d;
     --submit-danger: #d31b1b;
     --submit-blue: #1a93ca;
+    --footer-border-color: #2b2a29;
 
     --font-logo: 'Syne', sans-serif;
     --font-regular: 'Inter', sans-serif;
 }
 
-/* *{border: solid 1px yellow;} */
-
 body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    background: var(--background-gradient);
 }
 
-.page {
+body::-webkit-scrollbar {
+    width: 16px;
+}
+
+body::-webkit-scrollbar-track {
+    background: var(--scroll-background);
+}
+
+body::-webkit-scrollbar-thumb {
+    height: 8px;
+    border: 4px solid;
+    border-color: var(--scroll-background);
+    border-radius: 9999px;
+    background-color: var(--logo);
+}
+
+main {
     min-width: 500px;
     min-height: 100vh;
     padding: 0 50px;
-    background: var(--background-gradient);
     font-family: var(--font-regular);
+    margin-bottom: 0px;
 }
 
 .header {
@@ -53,6 +68,7 @@ body {
     cursor: default;
     transition: all 1s;
 }
+
 .menu a {
     font-size: 14px;
     color: var(--main-text);
@@ -81,19 +97,17 @@ body {
     color: var(--main-text);
 }
 
-/* Search area */
-
 .group_search {
     border-bottom: 1px solid var(--main-text);
 }
 
-.group_search input{
+.group_search input {
     width: 200px;
     padding: 10px;
     font-size: 20px;
     color: var(--main-text);
     border: none;
-    
+
     background-color: transparent;
 }
 
@@ -112,33 +126,35 @@ body {
     cursor: pointer;
 }
 
-/* end Search Area */
-
-/* Add User Area */
-
 .group_user_add,
-.group_contact_add {
+.group_contact_add,
+.group_contact_edit {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 0 48px;
     border-radius: 10px;
     color: var(--main-text);
-    background-color: rgba(0,0,0,.2);
+    background-color: rgba(0, 0, 0, .2);
+    transition: all 1s ease;
 }
 
 .group_user_add h2,
-.group_contact_add h2 {
+.group_contact_add h2,
+.group_contact_edit h2 {
     padding-top: 32px;
     font-weight: 400;
     letter-spacing: 4px;
+    transition: all 1s ease;
 }
 
 .group_user_add .group_input,
-.group_contact_add .group_input {
+.group_contact_add .group_input,
+.group_contact_edit .group_input {
     width: 350px;
     border: none;
     border-bottom: 1px solid var(--main-text);
+    transition: all 1s ease;
 }
 
 .group_input span {
@@ -146,12 +162,15 @@ body {
 }
 
 .group_input input,
-.group_contact_add input {
+.group_contact_add input,
+.group_contact_edit input {
     padding: 16px;
     font-size: 16px;
     color: var(--main-text);
     background-color: transparent;
     border: none;
+    transition: all 1s ease;
+    
 }
 
 .group_input input:focus {
@@ -169,7 +188,7 @@ body {
     border: none;
     font-weight: 600;
     font-size: 16px;
-    background-color: var(--form-input-placeholder);
+    background-color: var(--form-button);
     color: var(--form-background);
 }
 
@@ -178,29 +197,134 @@ body {
     cursor: pointer;
 }
 
-/* end Add User Area */
-
-/* Add Contact Area */
-
-.group_contact_add form {
+.group_contact_add form,
+.group_contact_edit form {
     display: flex;
     justify-content: center;
     gap: 24px;
     padding-bottom: 50px;
+    transition: all 1s ease;
 }
 
-.group_contact_add .submit_group {
+.group_contact_add .submit_group,
+.group_contact_edit .submit_group {
     padding: 0;
+    transition: all 1s ease;
 }
 
-/* end Add Contact Area */
+.empty_data {
+    display: flex;
+    justify-content: center;
+    padding: 100px 50px;
+    letter-spacing: 4px;
+    color: var(--main-text);
+}
 
+.list {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    margin-top: 10px;
+    padding: 10px;
+    height: 45vh;
+    color: var(--main-text);
+    overflow-y: scroll;
+}
 
+.list table {
+    width: 100%;
+}
 
+.list thead th {
+    font-size: 26px;
+    letter-spacing: 4px;
+    text-align: start;
+}
 
+.list th:first-child {
+    width: 50%;
+    text-align: start;
+}
 
+.list .list_item {
+    height: 48px;
+}
 
-/* Side Tag Area */
+.list tbody .phone_item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.list .actions {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+}
+
+.list .actions .remove,
+.list .actions .edit {
+    font-size: 24px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.list .actions .edit {
+    color: var(--submit-blue);
+}
+
+.list .actions .remove {
+    color: var(--submit-danger);
+}
+
+.list::-webkit-scrollbar {
+    width: 16px;
+}
+
+.list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.list::-webkit-scrollbar-thumb {
+    height: 20px;
+    border: 8px solid;
+    border-color: var(--scroll-background);
+    border-radius: 9999px;
+    background-color: var(--scroll-background);
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    border-top: 1px solid var(--footer-border-color);
+    font-family: var(--font-regular);
+    color: var(--main-text);
+    background-color: var(--background-gradient);
+}
+
+footer .total {
+    display: flex;
+    justify-content: space-between;
+    width: 85%;
+    padding: 0 50px;
+}
+
+footer .export_csv button {
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    color: var(--main-text);
+    cursor: pointer;
+}
+
+footer p {
+    opacity: 0.5;
+}
+
 .tag {
     position: absolute;
     right: -48px;
@@ -226,292 +350,8 @@ body {
     font-size: 12px;
     color: #FFFFFF;
 }
-/* end Side Tag Area */
-/*
-form {
-    border-radius: 10px;
-    color: var(--main-text);
-    background-color: rgba(0,0,0,.2);
-    transition: all 1s;
-}
-
-form .input_group {
-    width: 200px;
-    
-}
-
-form .input_group input {
-    transition: all 1s;
-}
-
-form .input_group span {
-    display: none;
-}
-
-form .submit_group .submit {
-    background-color: #e66d03;
-    color: #000000;
-    font-weight: 800;
-}
-
-.formulario_pesquisar {
-    background-color: transparent;
-}
-
-.formulario_pesquisar span {
-    font-size: 14px;
-    color: var(--main-text);
-}
-
-.formulario_pesquisar input[type="text"] {
-    width: 130px;
-    height: 30px;
-    padding: 0 15px;
-    margin-left: 15px;
-    color: var(--form-input-placeholder);
-    background-color: var(--main-background-color);
-    border: none;
-    border-radius: 8px;
-}
-
-
-.formulario .formulario_pesquisar {
-    padding: 15px;
-    font-size: 12px;
-    font-weight: 600;
-    width: 700px;
-    text-align: center;
-    margin: 0px auto;
-    border-radius: 10px 10px 0 0;
-    color: var(--main-text);
-    background-color: var(--form-background);
-}  */
-
-
-/* .formulario_editar {
-    padding: 15px;
-    font-size: 12px;
-    font-weight: 600;
-    width: 700px;
-    text-align: center;
-    margin: 0px auto;
-    border-radius: 10px;
-    color: var(--main-text);
-    background-color: var(--form-background);
-}
-
-.formulario_editar input[type="text"],
-.formulario_editar input[type="tel"] {
-    margin: 20px 10px 20px; 
-    width: 250px;
-    height: 40px;
-    border: none;
-    border-radius: 8px;
-    color: var(--main-text);
-    background-color: var(--main-background-color);
-    padding-left: 8px;
-    font-size: 16px;
-}
-
-.formulario_editar input[type="text"]::placeholder,
-.formulario_editar input[type="tel"]::placeholder {
-    color: var(--form-input-placeholder);
-}
-
-.formulario_editar .submit {
-    margin: 20px 10px 5px 20px;
-    width: 100px;
-    height: 40px;
-    border: none;
-    border-radius: 8px;
-    background-color: var(--form-submit);
-    font-weight: 600;
-    font-size: 16px;
-    transition: all 1000ms ease-in-out;
-}
-
-.formulario_pesquisar .submit {
-    display: inline-flex;
-    font-size: 20px;
-    color: var(--main-text);
-    border: none;
-    background: transparent;
-    cursor: pointer;
-}
-
-.formulario_erro,
-.tabela_vazia {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 15px;
-    font-size: 18px;
-    font-weight: 600;
-    width: 700px;
-    height: 85px;
-    margin: 0px auto;
-    border-radius: 10px 10px 0 0;
-    color: var(--main-background-color);
-    background-color: var(--submit-danger);
-}
-
-.tabela_vazia {
-    border-radius: 0;
-    color: var(--main-text);
-    background-color: var(--table-background);
-}
-
-.formulario_erro .msg_erro {
-    margin: 20px;
-    width: 300px;
-    height: 25px;
-    color: var(--main-text);
-}
-
-.formulario_erro .submit_btn {
-    margin: 20px 0 20px;
-    width: 100px;
-    height: 40px;
-    border: none;
-    border-radius: 8px;
-    background-color: var(--form-submit);
-    font-weight: 600;
-    font-size: 16px;
-    transition: all 1000ms ease-in-out;
-}
-
-.formulario input {
-    display: flex;
-    flex-direction: column;
-    margin: 10px; 
-    width: 250px;
-    height: 40px;
-    border: none;
-    border-radius: 8px;
-    color: var(--main-text);
-    background-color: var(--main-background-color);
-    padding-left: 16px;
-    font-size: 16px;
-}
-
-.formulario input::placeholder {
-    color: var(--form-input-placeholder);
-    opacity: .4;
-}
-
-.formulario .submit {
-    margin: 20px 10px 5px 20px;
-    width: 100px;
-    height: 40px;
-    border: none;
-    border-radius: 8px;
-    background-color: var(--logo);
-    font-weight: 800;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 1000ms ease-in-out;
-} */
-
-/* table {
-    padding: 20px;
-    margin: 0 auto;
-    width: 730px;
-    background-color: var(--table-background);
-    border-radius: 0;
-}
-
-table th:first-child {
-    font-size: 22px;
-    color: var(--main-text);
-    width: 45%;
-    text-align: start;
-}
-
-table th {
-    font-size: 22px;
-    padding: 18px 18px;
-    color: var(--main-text);
-    width: 35%;
-    text-align: start;
-}
-
-table th:last-child {
-    width: 20%;
-}
-
-table td {
-    padding: 8px 18px;
-    font-size: 18px;
-    color: var(--main-text);
-}
-
-table td div {
-    display: flex;
-    align-items: center;
-}
-
-.actions {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-.remove, .editar {
-    width: 35px;
-    height: 35px;
-    color: transparent;
-    background: var(--main-background-color);
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 250ms ease-in-out;
-}
-
-.remove:hover, .editar:hover {
-    transform: scale(1.2);
-    transition: all 250ms ease-in-out;
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px, rgba(0, 0, 0, 0.2) 0px 5px 10px;
-}
-
-.remove span {
-    font-size: 22px;
-    color: var(--submit-danger);
-}
-
-.editar span {
-    font-size: 22px;
-    color: var(--submit-blue);
-}
-
-.total {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px 20px;
-    margin: 0 auto 50px;
-    width: 690px;
-    color: var(--main-text);
-    background-color: var(--form-input-background);
-    border-radius: 0 0 20px 20px;
-}
-
-.total a {
-    text-decoration: none;
-    color: var(--main-text);
-}
-
-.export_csv button {
-    display: inline-flex;
-    font-size: 20px;
-    color: var(--main-text);
-    border: none;
-    background: transparent;
-    cursor: pointer;
-}
-
- */
 
 @media screen and (max-width: 1080px) {
-    /* *{border: solid 1px #ff38f5;} */
 
     .header {
         display: flex;
@@ -525,6 +365,7 @@ table td div {
     .page {
         padding-top: 16px;
     }
+
     .logo_group {
         display: flex;
         justify-content: space-between;
@@ -544,52 +385,39 @@ table td div {
         color: var(--main-text);
         transition: all 1000ms;
     }
-    
+
     .tools i {
         font-size: 20px;
         color: var(--main-text);
     }
 
-    .group_contact_add form {
+    .group_contact_add form,
+    .group_contact_edit form {
         flex-direction: column;
         gap: 0;
         padding-bottom: 0;
+        transition: all 1s ease;
     }
-
-    .group_contact_add .submit_group {
+    
+    .group_contact_add .submit_group,
+    .group_contact_edit .submit_group {
         padding: 16px 0 32px;
-    }
-} 
-
-/*
-
-    .tools {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      margin-right: 20px;
-      margin-bottom: 30px;
-      transition: all 1s ease;
-    }
-
-    .formulario {
-        padding: 35px 0;
-        font-size: 12px;
-        font-weight: 600;
-        min-width: 420px;
-        margin: 0px auto 0px;
         transition: all 1s ease;
     }
+    
+    .list {
+        height: 50vh;
+        align-items: start;
 
-    .formulario .input_group input {
-        width: 300px;
-        transition: all 1s ease;
     }
 
-    .formulario .input_group span {
-        display: unset;
-        padding-left: 30px;
+    .list th:first-child {
+        width: 40%;
+        text-align: start;
     }
 
-} */
+    .list th:last-child {
+        width: 10%;
+        text-align: start;
+    }
+}

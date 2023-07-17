@@ -14,8 +14,7 @@ $search = null;
         <?php include_once('components/error_msg.php'); ?>
         <?php if (!$erro): ?>
             <?php
-            include_once('components/contact_add_form.php');
-            include_once('components/contact_list.php');
+            include_once('components/user_login_form.php');
             ?>
         <?php endif; ?>
         <?php include_once('components/side_tag.php'); ?>
