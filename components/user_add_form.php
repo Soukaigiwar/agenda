@@ -1,6 +1,6 @@
 <div class="group_user_add">
     <h2>Adicionar Usuário</h2>
-    <form action="adicionar_usuario.php" method="post">
+    <form action="user_signup.php" method="post">
         <div class="group_input">
             <span>Nome:</span>
             <input type="text" name="text_nome" id="nome" required>

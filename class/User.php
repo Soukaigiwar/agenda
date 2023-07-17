@@ -14,31 +14,9 @@ class User {
     private string $_password = '';
     private $user_data = [];
 
-    private function query_with_filter()
-    {
-        $db = new Database(MYSQL_CONFIG);
-
-        $params = [':id' => $this->_id];
-
-        $query = $db->execute_query("SELECT * " .
-            "FROM usuarios " .
-            "WHERE id = :id", $params);
-        
-        if ($query->affected_rows > 0) {
-            echo 'trouxe resultado';
-            echo '<pre>';
-            print_r($query);
-        } else {
-            echo 'erro, nao foi encontrado';
-        }
-
-    
-    }
-
     public function get_user(string $email, string $password) {
 
         $this->_user = $email;
-        //$this->_password = $password;
 
         $user_exist = $this->check_user_exist();
 
@@ -58,7 +36,55 @@ class User {
 
             return $this->user_data;
         }
+    }
 
+    public function add_user(array $user_data) {
+        $this->_user = $user_data['email'];
+        $user_exist = $this->check_user_exist();
+
+        if ($user_exist) {
+            return false;
+        } else {
+            $db = new Database(MYSQL_CONFIG);
+
+            $params = [
+                ':nome' => $user_data['name'],
+                ':apelido' => $user_data['last_name'],
+                ':email' => $user_data['email'],
+                ':password' => $user_data['password']
+            ];
+
+            $query = $db->execute_non_query("INSERT INTO `usuarios` " .
+                "VALUES (0, :nome, :apelido, :email, :password, NOW(), NOW(), null)", $params);
+            
+            $status = $query->status;
+            $message = $query->message;
+            $sql = $query->query;
+            $results = $query->results;
+            $affected_rows = $query->affected_rows;
+            $last_inserted_id = $query->last_inserted_id;
+
+            return $this->_result($status, $message, $sql, $results, $affected_rows, $last_inserted_id);
+        }
+    }
+
+    private function query_with_filter()
+    {
+        $db = new Database(MYSQL_CONFIG);
+
+        $params = [':id' => $this->_id];
+
+        $query = $db->execute_query("SELECT * " .
+            "FROM usuarios " .
+            "WHERE id = :id", $params);
+        
+        if ($query->affected_rows > 0) {
+            echo 'trouxe resultado';
+            echo '<pre>';
+            print_r($query);
+        } else {
+            echo 'erro, nao foi encontrado';
+        }
     }
 
     private function check_user_exist(){
@@ -80,14 +106,14 @@ class User {
         return ($password == $this->_password);
     }
 
-    // private function _result($status, $message, $sql, $results, $affected_rows, $last_inserted_id){
-    //     $tmp = new stdClass();
-    //     $tmp->status = $status;
-    //     $tmp->message = $message;
-    //     $tmp->query = $sql;
-    //     $tmp->results = $results;
-    //     $tmp->affected_rows = $affected_rows;
-    //     $tmp->last_inserted_id = $last_inserted_id;
-    //     return $tmp;
-    // }
+    private function _result($status, $message, $sql, $results, $affected_rows, $last_inserted_id){
+        $tmp = new stdClass();
+        $tmp->status = $status;
+        $tmp->message = $message;
+        $tmp->query = $sql;
+        $tmp->results = $results;
+        $tmp->affected_rows = $affected_rows;
+        $tmp->last_inserted_id = $last_inserted_id;
+        return $tmp;
+    }
 }

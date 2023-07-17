@@ -1,7 +1,7 @@
 <?php
 
 $erro = !empty($_COOKIE['erro']) ? $_COOKIE['erro'] : null;
-setcookie('erro', '', time() - 1);
+//setcookie('erro', '', time() - 1);
 
 if ($erro) {
     echo ("<form action='index.php' method='get'>

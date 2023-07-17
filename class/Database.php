@@ -47,19 +47,17 @@ class Database {
         try {
             $db = $connection->prepare($sql);
             
-            (!empty($params)) ? 
-                $db->execute($params) : 
-                $db->execute();
+            (!empty($params)) ? $db->execute($params) : $db->execute();
 
             $results = $db->fetchAll($this->_return_type);
 
         } catch (PDOException $err) {
             $connection = null;
-            return $this->_result('error', $err->getMessage(), $sql, null, 0, null);
+            return $this->_result('400', $err->getMessage(), $sql, null, 0, null);
         }
 
         $connection = null;
-        return $this->_result('sucess', '', $sql, $results, $db->rowCount(), null);
+        return $this->_result('200', '', $sql, $results, $db->rowCount(), null);
     }
 
     public function execute_non_query($sql, $params = null){
@@ -77,9 +75,7 @@ class Database {
         try {
             $db = $connection->prepare($sql);
 
-            (!empty($params)) ? 
-                $db->execute($params) : 
-                $db->execute();
+            (!empty($params)) ? $db->execute($params) : $db->execute();
             
             $last_inserted_id = $connection->lastInsertId();
 
@@ -89,11 +85,11 @@ class Database {
             $connection->rollBack();
             
             $connection = null;
-            return $this->_result('error', $e->getMessage(), $sql, null, 0, null);
+            return $this->_result('400', $e->getMessage(), $sql, null, 0, null);
         }
 
         $connection = null;
-        return $this->_result('sucess', '', $sql, null, $db->rowCount(), $last_inserted_id);
+        return $this->_result('200', '', $sql, null, $db->rowCount(), $last_inserted_id);
     }
 
     private function _result($status, $message, $sql, $results, $affected_rows, $last_inserted_id){
