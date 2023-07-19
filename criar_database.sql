@@ -4,16 +4,19 @@ CREATE DATABASE IF NOT EXISTS `estudos`;
 
 USE `estudos`;
 
-CREATE TABLE `telefones` (
+DROP TABLE IF EXISTS `telefones`;
+DROP TABLE IF EXISTS `usuarios`;
+CREATE TABLE IF NOT EXISTS `telefones` (
     `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `nome` VARCHAR(50) NULL DEFAULT NULL,
     `telefone` VARCHAR(100) NULL DEFAULT NULL,
     `created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP()
     `updated_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP(),
-    `deleted_at` DATETIME NULL DEFAULT NULL
+    `deleted_at` DATETIME NULL DEFAULT NULL,
+    `user_id` INT(11) UNSIGNED NOT NULL 
 )
 
-CREATE TABLE `usuarios` (
+CREATE TABLE IF NOT EXISTS `usuarios` (
     `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `nome` VARCHAR(50) NULL DEFAULT NULL,
     `apelido` VARCHAR (50) NULL DEFAULT NULL,
@@ -25,4 +28,4 @@ CREATE TABLE `usuarios` (
 )
 
 INSERT INTO `usuarios` (nome, apelido, email, password)
-  VALUES ('admin', '', 'admin@agenda', '1234');
+  VALUES ('admin', '', 'admin@agenda', '$2y$10$6dWHyLMdgNT8KkpeEfWhEODQpWhupyNDZUj7sDpJn3NGgy6Etu4ry');
