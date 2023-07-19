@@ -1,31 +1,32 @@
 <?php
 
-$contatcs = null;
-$total_contacts = 0;
-$search = null;
+// require_once('class/Errors.php');
 
+
+// function vai_dar_erro() {
+//     throw new Errors();
+// }
+
+// try {
+//     vai_dar_erro();
+// } catch (Errors $e) {
+//     echo $e->get_error_msg();
+// }
+
+
+require_once('class/Errors.php');
+
+$email = "someone@example...com";
+
+try {
+  //check if
+  if(filter_var($email, FILTER_VALIDATE_EMAIL) === FALSE) {
+    //throw exception if email is not valid
+    throw new Exception("deu erro");
+  }
+}
+
+catch (Exception $e) {
+  echo $e->getMessage();
+}
 ?>
-
-<?php include_once('components/head.php'); ?>
-
-<body>
-    <main>
-        <?php include_once('components/header.php'); ?>
-        <?php include_once('components/error_msg.php'); ?>
-        <?php if (!$erro): ?>
-            <?php
-            include_once('components/contact_add_form.php');
-            include_once('components/contact_list.php');
-            ?>
-        <?php endif; ?>
-        <?php include_once('components/side_tag.php'); ?>
-    </main>
-    <footer>
-        <?php
-        include_once('components/status_bar.php');
-        include_once('components/footer.php');
-        ?>
-    </footer>
-</body>
-
-</html>

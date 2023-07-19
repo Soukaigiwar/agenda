@@ -12,7 +12,7 @@ require_once('UserCrypt.php');
 
 class User {
     private string $_user = '';
-    private int $_id = 0;
+    private int $_user_id = 0;
     private string $_password = '';
     private $user_data = [];
 
@@ -35,6 +35,7 @@ class User {
                 return false;
             }
 
+            $this->user_data['user_id'] = $user_exist[0]->id;
             $this->user_data['name'] = $user_exist[0]->nome;
             $this->user_data['apelido'] = $user_exist[0]->apelido;
             $this->user_data['email'] = $user_exist[0]->email;

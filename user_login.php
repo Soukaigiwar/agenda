@@ -21,6 +21,8 @@ if (!$user_data) {
     header('Location: index.php');
 } else {
     $_SESSION['user'] = $user_data['name'];
+    $_SESSION['user_id'] = $user_data['user_id'];
 }
+
 
 header('Location: index.php');

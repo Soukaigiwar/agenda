@@ -1,6 +1,12 @@
 <?php
+session_start();
 
-//session_start();
+$user = null;
+if (isset($_SESSION['user'])) {
+    $user = $_SESSION['user'];
+}
+
+
 
 // OK - Gerir lista de contatos com nomes e telefones;
 // OK - Permitir add, edit, delete os contatos;
@@ -24,7 +30,7 @@
 
             <?php if (!$erro): ?>
 
-                <?php if(!isset($_SESSION['user'])) : ?>
+                <?php if(!$user) : ?>
                     <?php
                     include_once('components/user_login_form.php');
                     ?>
@@ -38,7 +44,7 @@
             <?php include_once('components/side_tag.php'); ?>
         </main>
         <footer>
-            <?php if(isset($_SESSION['user'])) : ?>
+            <?php if($user) : ?>
                 <?php include_once('components/status_bar.php'); ?>
             <?php endif; ?>
             <?php include_once('components/footer.php'); ?>

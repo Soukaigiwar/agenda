@@ -2,7 +2,7 @@
 
 use sql_connection\Contact;
 
-require_once('./class/Contact.php');
+require_once('class/Contact.php');
 
 $search = '';
 
@@ -13,14 +13,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $search = '';
 }
 
-// adicionar cookie com search param para manter busca ao mudar tema day/night
-
 $query = new Contact();
 
-$result = $query->get_contacts($search);
-$contacts = $result->results;
-$total_contacts = $result->affected_rows;
 
+$result = $query->get_contacts($search);
+
+if (!$result) {
+    $total_contacts = 0;
+} else {
+    $contacts = $result->results;
+    $total_contacts = $result->affected_rows;
+}
 ?>
 
 <?php if ($total_contacts == 0) : ?>
@@ -44,10 +47,10 @@ $total_contacts = $result->affected_rows;
                     <td><?=$contact->nome?></td>
                     <td>
                         <div class='phone_item'>
-                            <?php if (str_contains($contact->telefone, +55)) : ?>
+                            <?php if (str_contains($contact->telefone, '+55')) : ?>
                                 <img width="24" height="24" src="./assets/img/brazil-48.png" alt="brazil-flag"/>
                                 <?=$contact->telefone?>
-                            <?php elseif (str_contains($contact->telefone, +351)) : ?>
+                            <?php elseif (str_contains($contact->telefone, '+351')) : ?>
                                 <img width="24" height="24" src="./assets/img/portugal-48.png" alt="portugal-flag"/>
                                 <?=$contact->telefone?>
                                 <?php else :?>
@@ -64,7 +67,10 @@ $total_contacts = $result->affected_rows;
                                 </button>
                             </form>
                             <form action='editar_telefone.php' method='post'>
-                                <button class='edit' type='submit' name='id' value='<?=$contact->id?>'>
+                                <input type='hidden' id='id' name='id' value='<?=$contact->id?>'>
+                                <input type='hidden' id='text_nome' name='text_nome' value='<?=$contact->nome?>'>
+                                <input type='hidden' id='text_telefone' name='text_telefone' value='<?=$contact->telefone?>'>
+                                <button class='edit' type='submit'>
                                     <span><i class='fa-solid fa-pen'></i></span>
                                 </button>
                             </form>
