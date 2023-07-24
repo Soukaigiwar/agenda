@@ -1,8 +1,14 @@
 <?php
+session_start();
 
 $contatcs = null;
 $total_contacts = 0;
 $search = null;
+
+$user = null;
+if (isset($_SESSION['user'])) {
+    $user = $_SESSION['user'];
+}
 
 ?>
 
@@ -20,10 +26,10 @@ $search = null;
         <?php include_once('components/side_tag.php'); ?>
     </main>
     <footer>
-        <?php
-        include_once('components/status_bar.php');
-        include_once('components/footer.php');
-        ?>
+        <?php if($user) : ?>
+            <?php include_once('components/status_bar.php'); ?>
+        <?php endif; ?>
+        <?php include_once('components/footer.php'); ?>
     </footer>
 </body>
 

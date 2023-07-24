@@ -8,7 +8,7 @@ $search = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $search = $_POST['text_search'];
-    setcookie('search', $search, time() + 2);
+    setcookie('search', $search, time() + 5);
 } else {
     $search = '';
 }
@@ -48,10 +48,10 @@ if (!$result) {
                     <td>
                         <div class='phone_item'>
                             <?php if (str_contains($contact->telefone, '+55')) : ?>
-                                <img width="24" height="24" src="./assets/img/brazil-48.png" alt="brazil-flag"/>
+                                <img width="24" height="24" src="./assets/img/flags/55.png" />
                                 <?=$contact->telefone?>
                             <?php elseif (str_contains($contact->telefone, '+351')) : ?>
-                                <img width="24" height="24" src="./assets/img/portugal-48.png" alt="portugal-flag"/>
+                                <img width="24" height="24" src="./assets/img/flags/351.png" />
                                 <?=$contact->telefone?>
                                 <?php else :?>
                                     <img width="24" height="24" src="./assets/img/unknown-flag.png" alt="unknown-flag"/>

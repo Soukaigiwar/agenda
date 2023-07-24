@@ -1,9 +1,12 @@
 <?php
+session_start();
 
 if ($_SERVER['REQUEST_METHOD'] != 'POST') {
-    if (empty($_COOKIE['telefone_id'])) {
-        header('Location: index.php');
-    }
+    header('Location: index.php');
+}
+
+if (empty($_COOKIE['telefone_id'])) {
+    header('Location: index.php');
 }
 
 $id = !empty($_POST['id']) ? $_POST['id'] : $_COOKIE['telefone_id'];
@@ -30,9 +33,14 @@ $results = $query->results;
 <?php include_once('components/head.php'); ?>
 
 <body>
-    <?php include_once('components/header.php'); ?>
-    <?php include_once('components/contact_edit_form.php'); ?>
-    <?php include_once('components/side_tag.php'); ?>
+    <main>
+        <?php include_once('components/header.php'); ?>
+        <?php include_once('components/contact_edit_form.php'); ?>
+        <?php include_once('components/side_tag.php'); ?>
+    </main>
+    <footer>
+        <?php include_once('components/footer.php'); ?>
+    </footer>
 </body>
 
 </html>

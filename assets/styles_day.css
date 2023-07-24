@@ -4,7 +4,8 @@
     --logo: #e66d03;
     --button-foreground: #77b9b9;
     --form-background: #ffffff80;
-    --scroll-background: #e4e4e4;
+    --group-background: rgba(255, 255, 255, 0.507);
+    --scroll-background: #f7f7f7;
     --form-input-background: #AADDEE;
     --submit-background: #646464;
     --form-submit: #F4D35E;
@@ -17,11 +18,17 @@
     --font-regular: 'Inter', sans-serif;
 }
 
+* {
+    transition: all 1000ms;
+}
+
 body {
     margin: 0;
     padding: 0;
+    height: 100vh;
     box-sizing: border-box;
     background: var(--background-gradient);
+    background-size: cover;
 }
 
 body::-webkit-scrollbar {
@@ -42,7 +49,6 @@ body::-webkit-scrollbar-thumb {
 
 main {
     min-width: 500px;
-    min-height: 100vh;
     padding: 0 50px;
     font-family: var(--font-regular);
     margin-bottom: 0px;
@@ -51,8 +57,8 @@ main {
 .header {
     display: flex;
     justify-content: space-between;
-    height: 140px;
-    padding: 50px 10px 10px;
+    height: 120px;
+    padding: 0;
     transition: all 1s ease;
 }
 
@@ -63,10 +69,14 @@ main {
 }
 
 .logo {
-    font-family: var(--font-logo);
     font-size: 60px;
+}
+
+.logo a {
     color: var(--logo);
-    cursor: default;
+    font-family: var(--font-logo);
+    text-decoration: none;
+    cursor: pointer;
     transition: all 1s;
 }
 
@@ -103,7 +113,7 @@ main {
 }
 
 .group_search input {
-    width: 200px;
+    width: 180px;
     padding: 10px;
     font-size: 20px;
     color: var(--main-text);
@@ -136,7 +146,7 @@ main {
     padding: 0 48px;
     border-radius: 10px;
     color: var(--main-text);
-    background-color: rgba(255, 255, 255, .5);
+    background-color: var(--group-background);
 }
 
 .group_user_add h2,
@@ -184,7 +194,7 @@ main {
     border: none;
     font-weight: 600;
     font-size: 16px;
-    background-color: var(--submit-background);
+    background-color: var(--form-button);
     color: var(--button-foreground);
 }
 
@@ -220,7 +230,7 @@ main {
     justify-content: start;
     margin-top: 10px;
     padding: 10px;
-    height: 45vh;
+    height: calc(100vh - 520px);
     color: var(--main-text);
     overflow-y: scroll;
 }
@@ -296,8 +306,11 @@ footer {
     height: 150px;
     border-top: 1px solid var(--footer-border-color);
     font-family: var(--font-regular);
-    color: var(--main-text);
     background-color: var(--background-gradient);
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }
 
 footer .total {
@@ -305,6 +318,7 @@ footer .total {
     justify-content: space-between;
     width: 85%;
     padding: 0 50px;
+    color: var(--main-text);
 }
 
 footer .export_csv button {
@@ -315,20 +329,21 @@ footer .export_csv button {
     cursor: pointer;
 }
 
-footer p {
+footer p a {
+    color: var(--main-text);
+    text-decoration: none;
     opacity: 0.5;
 }
 
 .tag {
     position: absolute;
     right: -48px;
-    top: calc(100vh / 3);
+    top: calc(100vh / 2);
     width: 140px;
     height: 40px;
     padding: 0 0 3px;
     background-image: url('img/textile.png');
-    background-repeat: repeat-x;
-    background-size: contain;
+    background-size: cover;
     transform: rotate(-90deg);
     box-shadow: 0px -5px 20px 0px rgba(0, 0, 0, 0.63);
     cursor: pointer;
@@ -345,13 +360,28 @@ footer p {
     color: #FFFFFF;
 }
 
+.inner_tag a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
 @media screen and (max-width: 1080px) {
+
+    * {
+        transition: all 1000ms;
+    }
+
+    main {
+        min-width: 400px;
+        padding: 0 5px;
+        font-family: var(--font-regular);
+        margin-bottom: 0px;
+    }
 
     .header {
         display: flex;
         flex-direction: column;
         justify-content: space-around;
-        min-width: 80%;
         padding: 0 20px;
         transition: all 1s ease;
     }
@@ -385,30 +415,62 @@ footer p {
         color: var(--main-text);
     }
 
+    .group_search input {
+        width: 140px;
+    }
+
+    .group_user_add h2,
+    .group_contact_add h2,
+    .group_contact_edit h2 {
+        padding-top: 0px;
+        font-size: 20px;
+}
+
     .group_contact_add form,
     .group_contact_edit form {
         flex-direction: column;
         gap: 0;
         padding-bottom: 0;
+        font-size: 14px;
     }
 
     .group_contact_add .submit_group,
     .group_contact_edit .submit_group {
-        padding: 16px 0 32px;
+        padding: 0 0 16px;
+    }
+
+    .submit_group input {
+        padding: 12px 16px;
+        letter-spacing: 2px;
+        font-weight: 400;
+        font-size: 14px;
+
     }
 
     .list {
-        height: 50vh;
         align-items: start;
+        height: calc(100vh - 620px);
+    }
+    
+    .list thead th {
+        font-size: 16px;
+        letter-spacing: 2px;
+        text-align: start;
+        padding-bottom: 32px;
     }
 
     .list th:first-child {
         width: 40%;
         text-align: start;
     }
+    
+    .list .actions {
+        display: flex;
+        justify-content: center;
+        gap: 4px;
+    }
 
-    .list th:last-child {
-        width: 10%;
-        text-align: start;
+    .tag {
+        top: calc(100vh / 4.5);
     }
 }

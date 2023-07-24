@@ -1,3 +1,3 @@
 <div>
-    <p>Feito por Sergio Mello</p>
+    <p><a href="mailto:sergiomello@gmail.com">Feito por Sergio Mello</a></p>
 </div>
