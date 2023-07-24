@@ -470,6 +470,10 @@ footer p a {
         gap: 4px;
     }
 
+    footer {
+        height: 90px;
+    }
+
     .tag {
         top: calc(100vh / 4.5);
     }
